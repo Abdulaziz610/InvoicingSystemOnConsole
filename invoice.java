@@ -70,6 +70,23 @@ public class invoice {
 	    this.balance = balance;
 	}
 
+	// add item to invoice
+	public void addItem(item item) {
+		items.add(item);
+		numberOfItems++;
+		totalAmount += item.getQtyAmount();
+		balance = totalAmount - paidAmount;
+	}
+
+	// remove item from invoice
+	public void removeItem(item item) {
+		if (items.remove(item)) {
+			numberOfItems--;
+			totalAmount -= item.getQtyAmount();
+			balance = totalAmount - paidAmount;
+		}
+	}
+
 
 	
 }
