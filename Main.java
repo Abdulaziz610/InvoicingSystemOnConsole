@@ -21,4 +21,12 @@ public class Main {
 			System.out.println((i + 1) + "-" + menuItems.get(i));
 		}
 	}
+
+	public ArrayList<String> getMenuItems() {
+		return menuItems;
+	}
+
+	public void setMenuItems(ArrayList<String> menuItems) {
+		this.menuItems = menuItems;
+	}
 }
