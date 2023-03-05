@@ -15,4 +15,10 @@ public class Main {
 		menuItems.add("Exit");
 	}
 
+	public void showMenu() {
+		System.out.println("Application Main Menu:");
+		for (int i = 0; i < menuItems.size(); i++) {
+			System.out.println((i + 1) + "-" + menuItems.get(i));
+		}
+	}
 }
