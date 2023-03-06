@@ -107,6 +107,41 @@ public class Main {
 			 
 			}
 	  
-	
+	 public void deletDataBase()
+		{
+		 String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=DatabseInvoice;" + "encrypt=true;"
+					+ "trustServerCertificate=true";
+			String user = "sa";
+			String pass = "root";
+			
+			
+			Connection con = null;
+			
+			try {
+				Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+				DriverManager.registerDriver(driver);
+				con = DriverManager.getConnection(url, user, pass);
+				Statement st = con.createStatement();
+			System.out.println("Enter the Item ID ");
+		    String sql = "DELETE FROM [dbo].[InvoiceItems]\r\n"
+		    		+ "      WHERE Item_Id= "+ sc.nextInt() ;
+		    System.out.println(sql);
+
+			Integer m = st.executeUpdate(sql);
+			if (m >= 1) {
+				System.out.println("inserted successfully : " + sql);
+			} else {
+				System.out.println("insertion failed");
+			}
+			
+		    
+			con.close();
+			} catch (Exception ex) {
+				System.err.println(ex);
+			}
+		
+		}
+	 
+	 
 	
 }
