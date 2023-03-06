@@ -1,32 +1,43 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Main {
-	private ArrayList<String> menuItems;
-
-	public Main() {
-		menuItems = new ArrayList<String>();
-		menuItems.add("Shop Settings");
-		menuItems.add("Manage Shop Items");
-		menuItems.add("Create New Invoice");
-		menuItems.add("Report: Statistics");
-		menuItems.add("Report: All Invoices");
-		menuItems.add("Search Invoice");
-		menuItems.add("Program Statistics");
-		menuItems.add("Exit");
-	}
-
-	public void showMenu() {
-		System.out.println("Application Main Menu:");
-		for (int i = 0; i < menuItems.size(); i++) {
-			System.out.println((i + 1) + "-" + menuItems.get(i));
+	ArrayList<shop> shopList = new ArrayList<shop>();
+	ArrayList<customer> customerList = new ArrayList<customer>();
+	ArrayList<item> itemList = new ArrayList<item>();
+	ArrayList<invoice> invoicList = new ArrayList<invoice>();
+	
+	Scanner sc = new Scanner(System.in);
+	
+	//************================ Shop ================************//
+	public void addShop() {
+		boolean condition0 = true;
+		
+		while(condition0) {
+			shop firstShop = new shop();
+			System.out.println(" Enter the shop name: ");
+			String shopName = sc.next();
+			firstShop.setShopName(shopName);
+			
+			System.out.println(" Enter the shop ID: ");
+			int shopID = sc.nextInt();
+			firstShop.setShopID(shopID);
+			
+			shopList.add(firstShop);
+			
 		}
+		condition0 = false;
 	}
-
-	public ArrayList<String> getMenuItems() {
-		return menuItems;
-	}
-
-	public void setMenuItems(ArrayList<String> menuItems) {
-		this.menuItems = menuItems;
-	}
+	
+	
+	
 }
