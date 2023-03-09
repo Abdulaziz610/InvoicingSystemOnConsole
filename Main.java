@@ -484,5 +484,253 @@ public class Main {
 			}
 		}
 	}
+	
+	
+	
+	//////////////////////////////////////Show Data///////////////////////////////
+	
+	public void printInvoiceHeader() {
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=DatabseInvoice;" + "encrypt=true;"
+				+ "trustServerCertificate=true";
+		String user = "sa";
+		String pass = "root";
+
+		Connection con = null;
+
+		try {
+			Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			DriverManager.registerDriver(driver);
+			con = DriverManager.getConnection(url, user, pass);
+			Statement st = con.createStatement();
+
+			String sql = "select * from Invoice_header";
+
+			ResultSet resultSet = st.executeQuery(sql);
+			int count = 1;
+			while (resultSet.next()) {
+				System.out.println("=============================== " + count + " ============================");
+				System.out.println("Invoice_header_ID = " + resultSet.getString("Invoice_header_ID"));
+				System.out.println("Invoice_Id = " + resultSet.getString("Invoice_Id"));
+				System.out.println("Invoice_Fax = " + resultSet.getString("Invoice_Fax"));
+				System.out.println("Invoice_phone = " + resultSet.getString("Invoice_phone"));
+				System.out.println("Invoice_Email = " + resultSet.getString("Invoice_Email"));
+				System.out.println("Invoice_Data = " + resultSet.getString("Invoice_Data"));
+				count++;
+			}
+
+			con.close();
+		} catch (Exception ex) {
+			System.err.println(ex);
+		}
+	}
+
+	public static void loadDataFormInvoiceItems() {
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=DatabseInvoice;" + "encrypt=true;"
+				+ "trustServerCertificate=true";
+		String user = "sa";
+		String pass = "root";
+		Connection con = null;
+		try {
+			Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			DriverManager.registerDriver(driver);
+			con = DriverManager.getConnection(url, user, pass);
+			String sql = "SELECT * FROM InvoiceItems ";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if (!rs.next()) {
+				System.out.println("Items Not Found");
+			} else {
+				System.out.println("Items Details:");
+				System.out.println(
+						"--------------------------------------------------------------------------------------------------------------------------------");
+				System.out.println(
+						"Invoice_Items_ID\tinvoice ID\tItem_Id\tItem_Id\tItem_Name\tUnitPrice\tQuantity\tQty_Amount");
+				System.out.println(
+						"--------------------------------------------------------------------------------------------------------------------------------");
+				do {
+					int InvoiceItem_Id = rs.getInt("InvoiceItem_Id");
+					int Invoice_Id = rs.getInt("Invoice_Id");
+					int Item_Id = rs.getInt("Item_Id");
+					String Item_Name = rs.getString("Item_Name");
+					double UnitPrice = rs.getInt("UnitPrice");
+					int Quantity = rs.getInt("Quantity");
+					double Qty_Amount = rs.getFloat("Qty_Amount");
+					System.out.println(InvoiceItem_Id + "\t\t" + Invoice_Id + "\t\t" + Item_Id + "\t\t" + Item_Name
+							+ "\t\t" + UnitPrice + "\t\t" + Quantity + "\t\t" + Qty_Amount);
+					System.out.println(
+							"--------------------------------------------------------------------------------------------------------------------------------");
+				} while (rs.next());
+			}
+		} catch (Exception ex) {
+			System.err.println(ex);
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					System.err.println(e);
+				}
+			}
+		}
+	}
+
+	public static void loadDAataFromInvoice() {
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=DatabseInvoice;" + "encrypt=true;"
+				+ "trustServerCertificate=true";
+		String user = "sa";
+		String pass = "root";
+		Connection con = null;
+		try {
+			Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			DriverManager.registerDriver(driver);
+			con = DriverManager.getConnection(url, user, pass);
+			String sql = "SELECT * FROM Invoices ";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if (!rs.next()) {
+				System.out.println("Invoice Not Found");
+			} else {
+				System.out.println("Invoice Details:");
+				System.out.println(
+						"--------------------------------------------------------------------------------------------------------------------------------");
+				System.out.println(
+						"Invoice ID\tCustomer ID\tInvoice Date\tNumber of Items\tTotal Amount\tPaid Amount\ttotal Balance");
+				System.out.println(
+						"--------------------------------------------------------------------------------------------------------------------------------");
+				do {
+					int invoice_Id = rs.getInt("Invoice_Id");
+					int Customer_Id = rs.getInt("Customer_Id");
+					String invoice_Date = rs.getString("Invoice_Date");
+					String Number_Of_Items = rs.getString("Number_Of_Items");
+					double total_Amount = rs.getInt("total_Amount");
+					double paid_Amount = rs.getFloat("paid_Amount");
+					double totkal_Balance = rs.getFloat("totkal_Balance");
+					System.out.println(invoice_Id + "\t\t" + Customer_Id + "\t\t" + invoice_Date + "\t\t"
+							+ Number_Of_Items + "\t\t" + total_Amount + "\t\t" + paid_Amount + "\t\t" + totkal_Balance);
+					System.out.println(
+							"--------------------------------------------------------------------------------------------------------------------------------");
+				} while (rs.next());
+			}
+		} catch (Exception ex) {
+			System.err.println(ex);
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					System.err.println(e);
+				}
+			}
+		}
+	}
+
+	public void printCustomerDataBase() {
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=DatabseInvoice;" + "encrypt=true;"
+				+ "trustServerCertificate=true";
+		String user = "sa";
+		String pass = "root";
+
+		Connection con = null;
+
+		try {
+			Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			DriverManager.registerDriver(driver);
+			con = DriverManager.getConnection(url, user, pass);
+			Statement st = con.createStatement();
+
+			String sql = "select * from customers";
+			int count = 1;
+			ResultSet resultSet = st.executeQuery(sql);
+			while (resultSet.next()) {
+				System.out.println("=============================== " + count + " ============================");
+				System.out.println("Id = " + resultSet.getString("Customer_Id"));
+				System.out.println("customer name = " + resultSet.getString("Customer_Full_Name"));
+				System.out.println("phone number = " + resultSet.getString("Customer_Phone_Number"));
+				count++;
+
+			}
+
+			con.close();
+		} catch (Exception ex) {
+			System.err.println(ex);
+		}
+	}
+
+	public void printinvoiceDataBase() {
+
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=DatabseInvoice;" + "encrypt=true;"
+				+ "trustServerCertificate=true";
+		String user = "sa";
+		String pass = "root";
+
+		Connection con = null;
+
+		try {
+			Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			DriverManager.registerDriver(driver);
+			con = DriverManager.getConnection(url, user, pass);
+			Statement st = con.createStatement();
+
+			String sql = "select * from Invoices";
+
+			ResultSet resultSet = st.executeQuery(sql);
+			int count = 1;
+			while (resultSet.next()) {
+				System.out.println("=============================== " + count + " ============================");
+				System.out.println("Id = " + resultSet.getString("Invoice_Id"));
+				System.out.println("Customer_Id = " + resultSet.getString("Customer_Id"));
+				System.out.println("Invoice_Date = " + resultSet.getString("Invoice_Date"));
+				System.out.println("Number_Of_Items = " + resultSet.getString("Number_Of_Items"));
+				System.out.println("total_Amount = " + resultSet.getString("total_Amount"));
+				System.out.println("total_Balancer = " + resultSet.getString("totkal_Balance"));
+				count++;
+			}
+
+			con.close();
+		} catch (Exception ex) {
+			System.err.println(ex);
+		}
+	}
+
+	public void printInvoiceItems() {
+
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=DatabseInvoice;" + "encrypt=true;"
+				+ "trustServerCertificate=true";
+		String user = "sa";
+		String pass = "root";
+
+		Connection con = null;
+
+		try {
+			Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			DriverManager.registerDriver(driver);
+			con = DriverManager.getConnection(url, user, pass);
+			Statement st = con.createStatement();
+
+			String sql = "select * from InvoiceItems";
+
+			ResultSet resultSet = st.executeQuery(sql);
+			int count = 1;
+			while (resultSet.next()) {
+				System.out.println("=============================== " + count + " ============================");
+				System.out.println("Id = " + resultSet.getString("InvoiceItem_Id"));
+				System.out.println("Invoice_Id = " + resultSet.getString("Invoice_Id"));
+				System.out.println("Item_Id = " + resultSet.getString("Item_Id"));
+				System.out.println("Item_Name = " + resultSet.getString("Item_Name"));
+				System.out.println("UnitPrice = " + resultSet.getString("UnitPrice"));
+				System.out.println("Quantity = " + resultSet.getString("Quantity"));
+				System.out.println("Qty_Amount = " + resultSet.getString("Qty_Amount"));
+				count++;
+			}
+
+			con.close();
+		} catch (Exception ex) {
+			System.err.println(ex);
+		}
+
+	}
+
+	
+	
 
 }
