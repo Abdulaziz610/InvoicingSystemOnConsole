@@ -152,7 +152,7 @@ public class Main {
 	}
 
 	public void updateDataBsePrice() {
-		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=invoice;" + "encrypt=true;"
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=DatabseInvoice;" + "encrypt=true;"
 				+ "trustServerCertificate=true";
 		String user = "sa";
 		String pass = "root";
@@ -188,7 +188,7 @@ public class Main {
 	//////////////////// Customer/////////////////////////
 
 	public void updateDataBseCustomerPhone() {
-		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=invoice;" + "encrypt=true;"
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=DatabseInvoice;" + "encrypt=true;"
 				+ "trustServerCertificate=true";
 		String user = "sa";
 		String pass = "root";
@@ -222,7 +222,7 @@ public class Main {
 	}
 
 	public void deletDataBaseCustomer() {
-		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=invoice;" + "encrypt=true;"
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=DatabseInvoice;" + "encrypt=true;"
 				+ "trustServerCertificate=true";
 		String user = "sa";
 		String pass = "root";
@@ -267,7 +267,7 @@ public class Main {
 		customer.setCustomerPhoneNumber(customerPhoneNumber);
 		customerList.add(customer);
 
-		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=invoice;" + "encrypt=true;"
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=DatabseInvoice;" + "encrypt=true;"
 				+ "trustServerCertificate=true";
 		String user = "sa";
 		String pass = "root";
@@ -315,7 +315,7 @@ public class Main {
 		System.out.println("Enter the Total Balance: ");
 		double totalbalance = sc.nextDouble();
 
-		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=invoice;" + "encrypt=true;"
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=DatabseInvoice;" + "encrypt=true;"
 				+ "trustServerCertificate=true";
 		String user = "sa";
 		String pass = "root";
@@ -376,7 +376,7 @@ public class Main {
 
 		invoiceList.add(FirstInvoice);
 
-		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=invoice;" + "encrypt=true;"
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=DatabseInvoice;" + "encrypt=true;"
 				+ "trustServerCertificate=true";
 		String user = "sa";
 		String pass = "root";
@@ -431,7 +431,7 @@ public class Main {
 	public static void findInvoice()
 
 			throws IOException, InterruptedException {
-		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=invoice;" + "encrypt=true;"
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=DatabseInvoice;" + "encrypt=true;"
 				+ "trustServerCertificate=true";
 		String user = "sa";
 		String pass = "root";
@@ -457,7 +457,7 @@ public class Main {
 						"Invoice ID\tCustomer ID\tInvoice Date\tNumber of Items\tTotal Amount\tPaid Amount\ttotal Balance");
 				System.out.println(
 						"--------------------------------------------------------------------------------------------------------------------------------");
-// Print the details of the invoice
+				// Print the details of the invoice
 				do {
 					int invoiceId = rs.getInt("Invoice_Id");
 					int customerId = rs.getInt("Customer_Id");
