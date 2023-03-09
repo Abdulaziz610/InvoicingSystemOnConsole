@@ -4,16 +4,16 @@ public class shop {
 	private int shopID;
 	
 	
-	public String getShopName() {
+	public String getshopName() {
 		return shopName;
 	}
-	public void setShopName(String shopName) {
+	public void setshopName(String shopName) {
 		this.shopName = shopName;
 	}
-	public int getShopID() {
+	public int getshopID() {
 		return shopID;
 	}
-	public void setShopID(int shopID) {
+	public void setshopID(int shopID) {
 		this.shopID = shopID;
 	}
 

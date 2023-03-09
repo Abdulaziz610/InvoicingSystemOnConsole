@@ -73,7 +73,6 @@ public class MainMenu {
 	    	  }
 	    	  else
 	    	  if(userOp == 4) {
-	    		  //////////////////
 	    		  choice1 = false;
 	    			
 	    	  }
@@ -96,29 +95,25 @@ public class MainMenu {
 		      
 	    	  if(userOp == 1) {
 	    		  System.out.println(" Item Details: ");
-	    		  ///////////////////////
+	    		  mainMethod.addInvoiceItems();
 				  choice2 = true;
 	    	
 	    	  }
 	    	  
 	    	  if(userOp == 2) {
 					System.out.print("Enter ID of the item to bo deleted: ");
-				///////////////////////////////	
+				mainMethod.deletDataBase();
 					
 	    		  choice2 = true;
 	    	  }
 	    	  if(userOp == 3) {
 	    		  System.out.print("Enter ID of the item to change its price: ");
-	    		//////////////////////
-	    		  System.out.println("Enter the New Price of the item: ");
-	    		 ////////////////////////
+	    		  mainMethod.updateDataBsePrice();
 	    		 choice2 = true;
 	    	  }
 		      
 		      if(userOp == 4) {
-		    	  ////////////////////
 	    		  System.out.println("==================== Report Item ====================");
-	    		  
 	    		 choice2 = true;
 	    	  }
 	    	  if(userOp == 5) {
@@ -130,14 +125,21 @@ public class MainMenu {
 	      case 3:
 	    	  
 	    	  System.out.println("======= New Invoice =======");
-	    	  //////////////////////////
+	    	  mainMethod.addInvoice();
 	    	  choice = true;
 
 	        break;
 	      case 4:
 	    	  
 	    	  System.out.println("======= Statistics =======");
-	    	  ////////////////////////////
+	    	  System.out.println("======= Customer =======");
+	    	  mainMethod.printCustomerDataBase();
+	    	  System.out.println("======= Invoice =======");
+	    	  mainMethod.printinvoiceDataBase();
+	    	  System.out.println("======= Item =======");
+	    	  mainMethod.printInvoiceItems();
+	    	  System.out.println("======= Invoice Header =======");
+	    	  mainMethod.printInvoicingHeader();
 		        break;
 	      case 5:
 	    	  System.out.println("======= All Invoices =======");

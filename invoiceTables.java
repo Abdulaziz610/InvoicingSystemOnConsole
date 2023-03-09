@@ -17,7 +17,14 @@ public class invoiceTables {
         try (Connection connection = DriverManager.getConnection(url, username, password);
                 Statement statement = connection.createStatement()) {
 
-            // Create Hotels table
+            String customerTable = "CREATE TABLE customers ("
+                    + "customer_id INT PRIMARY KEY,"
+                    + "full_name VARCHAR(255),"
+                    + "phone_number VARCHAR(20)"
+                    + ");";
+
+            statement.executeUpdate(customerTable);
+
             String invoiceTable = "CREATE TABLE invoices ("
                     + "invoice_id INT PRIMARY KEY,"
                     + "customer_id INT,"
@@ -30,7 +37,7 @@ public class invoiceTables {
 
             statement.executeUpdate(invoiceTable);
 
-            // Create Room_Type table
+        
             String itemTable  = "CREATE TABLE items ("
                     + "item_id INT PRIMARY KEY,"
                     + "item_name VARCHAR(255),"
@@ -38,14 +45,7 @@ public class invoiceTables {
                     + ");";
             statement.executeUpdate(itemTable);
 
-            // Create Rooms table
-            String customerTable = "CREATE TABLE customers ("
-                    + "customer_id INT PRIMARY KEY,"
-                    + "full_name VARCHAR(255),"
-                    + "phone_number VARCHAR(20)"
-                    + ");";
-
-            statement.executeUpdate(customerTable);
+      
 
 
             System.out.println("Tables created successfully.");

@@ -123,7 +123,7 @@ public class Main {
 			DriverManager.registerDriver(driver);
 			con = DriverManager.getConnection(url, user, pass);
 			Statement st = con.createStatement();
-			System.out.println("Enter the Item ID ");
+			System.out.println("Enter Item ID ");
 			String sql = "DELETE FROM [dbo].[InvoiceItems]\r\n" + "      WHERE Item_Id= " + sc.nextInt();
 			System.out.println(sql);
 
