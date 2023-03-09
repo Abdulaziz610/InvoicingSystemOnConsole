@@ -1,13 +1,12 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -361,12 +360,19 @@ public class Main {
 
 		System.out.println(" Enter the invoice phone: ");
 		int invoicePhone = sc.nextInt();
+		FirstInvoice.setInvoiceTel(invoicePhone);
 
 		System.out.println("Enter the invoice Email: ");
 		String invoiceEmail = sc.next();
+		FirstInvoice.setInvEmail(invoiceEmail);
+		
+		System.out.println("Enter the invoice Website: ");
+		String invoiceWebsite = sc.next();
+		FirstInvoice.setInvEmail(invoiceWebsite);
 
 		System.out.println("Enter the date in the format '__'/1/2023");
 		int invoiceDate = sc.nextInt();
+		FirstInvoice.setInvoiceDate(null);
 
 		invoiceList.add(FirstInvoice);
 
@@ -404,18 +410,20 @@ public class Main {
 
 	public void printInvoicingHeader() {
 		for (invoice fInvoice : invoiceList) {
-			System.out.println("Fax is : " + fInvoice);
-			System.out.println("tel number is : " + fInvoice.getInvoiceNumber());
-			System.out.println("Fax is : " + fInvoice.getEmail());
+			System.out.println("Fax is: " + fInvoice.getInvoiceFax());
+			System.out.println("tel number is: " + fInvoice.getInvoiceNumber());
+			System.out.println("Email is: " + fInvoice.getInvEmail());
+			System.out.println("Website is: " + fInvoice.getInvEmail());
 
 		}
 
 	}
 
 	public void printcustomer() {
-		for (Customer a : customerList) {
-			System.out.println("customer full name is : " + a.getCustomerFullName());
-			System.out.println("customer phone is     : " + a.getCustomerPhoneNumber());
+		for (customer fCustomer : customerList) {
+			System.out.println("Customer First Name is: " + fCustomer.getCustomerFirstName());
+			System.out.println("Customer Second Name is: " + fCustomer.getCustomerSecondName());
+			System.out.println("Customer Phone Number is: " + fCustomer.getCustomerPhoneNumber());
 
 		}
 	}
@@ -457,9 +465,9 @@ public class Main {
 					int itemsNumber = rs.getInt("Number_Of_Items");
 					double total_Amount = rs.getInt("total_Amount");
 					double paidAmount = rs.getFloat("paid_Amount");
-					double totkal_Balance = rs.getFloat("totkal_Balance");
+					double total_Balance = rs.getFloat("totkal_Balance");
 					System.out.println(invoiceId + "\t\t" + customerId + "\t\t" + invoiceDate + "\t\t" + itemsNumber
-							+ "\t\t" + total_Amount + "\t\t" + paidAmount + "\t\t" + totkal_Balance);
+							+ "\t\t" + total_Amount + "\t\t" + paidAmount + "\t\t" + total_Balance);
 					System.out.println(
 							"--------------------------------------------------------------------------------------------------------------------------------");
 				} while (rs.next());
