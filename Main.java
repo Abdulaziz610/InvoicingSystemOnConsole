@@ -11,85 +11,82 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
+
 	ArrayList<shop> shopList = new ArrayList<shop>();
 	ArrayList<customer> customerList = new ArrayList<customer>();
 	ArrayList<item> itemList = new ArrayList<item>();
 	ArrayList<invoice> invoiceList = new ArrayList<invoice>();
-	
+
 	Scanner sc = new Scanner(System.in);
-	
-	//************================ Shop ================************//
+
+	// ************================ Shop ================************//
 	public void addShop() {
 		boolean condition0 = true;
-		
-		while(condition0) {
+
+		while (condition0) {
 			shop firstShop = new shop();
 			System.out.println(" Enter the shop name: ");
 			String shopName = sc.next();
-			firstShop.setShopName(shopName);
-			
+			firstShop.setshopName(shopName);
+
 			System.out.println(" Enter the shop ID: ");
 			int shopID = sc.nextInt();
-			firstShop.setShopID(shopID);
-			
+			firstShop.setshopID(shopID);
+
 			shopList.add(firstShop);
-			
+
 		}
 		condition0 = false;
 	}
-	
-	public void printShopDetails()
-	{
-		for (shop fShop : shopList)
-		{
-		System.out.println(" Shop Name is: "+ fShop.getShopName() + "   ");
-		}
-	
-	}
-	
-	//************================ Item ================************//
-	 public void addInvoiceItems()
-	    {
-	    	invoice fInvoice = new invoice();
-	    	System.out.println("Enter the invoice Id: ");
-	    	int invoiceId = sc.nextInt();
-	    	
-	    	System.out.println("Enter items ID: ");
-	    	int itemID = sc.nextInt();
-	    	
-	    	System.out.println("Enter item Name: ");
-	    	String itemName = sc.next();
-	    	
-	    	System.out.println("Enter Unit price: ");
-	    	double unitPrice = sc.nextDouble();
-	    	
-	    	System.out.println("Enter Quantity: ");
-	    	int quantity = sc.nextInt();
-	    	
-	    	System.out.println("Enter Quantity Amount: ");
-	    	int quantityAmount = sc.nextInt();
-	    	
-	    	invoiceList.add(fInvoice);
-	    	
-	    	
 
-		    String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=DatabseInvoice;" + "encrypt=true;"
-					+ "trustServerCertificate=true";
-			String user = "sa";
-			String pass = "root";
-			
-			
-			Connection con = null;
-			
-			try {
-				Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
-				DriverManager.registerDriver(driver);
-				con = DriverManager.getConnection(url, user, pass);
-				Statement st = con.createStatement();
-			
-		    String sql = "INSERT INTO InvoiceItems (InvoiceItem_Id,Invoice_Id,Item_Id,Item_Name,UnitPrice,Quantity,Qty_Amount)"+
-		            "VALUES ("+invoiceId+","+itemID+",'"+itemName+"',"+unitPrice+","+quantity+","+quantityAmount+ ")";
-		    System.out.println(sql);
+	public void printShopDetails() {
+		for (shop fShop : shopList) {
+			System.out.println(" Shop Name is: " + fShop.getshopName() + "   ");
+			System.out.println(" Shop Name is: " + fShop.getshopID() + "   ");
+		}
+
+	}
+
+	// ************================ Item ================************//
+	public void addInvoiceItems() {
+		invoice fInvoice = new invoice();
+		System.out.println("Enter the invoice Id: ");
+		int invoiceId = sc.nextInt();
+
+		System.out.println("Enter items ID: ");
+		int itemID = sc.nextInt();
+
+		System.out.println("Enter item Name: ");
+		String itemName = sc.next();
+
+		System.out.println("Enter Unit price: ");
+		double unitPrice = sc.nextDouble();
+
+		System.out.println("Enter Quantity: ");
+		int quantity = sc.nextInt();
+
+		System.out.println("Enter Quantity Amount: ");
+		int quantityAmount = sc.nextInt();
+
+		invoiceList.add(fInvoice);
+
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=DatabseInvoice;" + "encrypt=true;"
+				+ "trustServerCertificate=true";
+		String user = "sa";
+		String pass = "root";
+
+		Connection con = null;
+
+		try {
+			Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			DriverManager.registerDriver(driver);
+			con = DriverManager.getConnection(url, user, pass);
+			Statement st = con.createStatement();
+
+			String sql = "INSERT INTO InvoiceItems (InvoiceItem_Id,Invoice_Id,Item_Id,Item_Name,UnitPrice,Quantity,Qty_Amount)"
+					+ "VALUES (" + invoiceId + "," + itemID + ",'" + itemName + "'," + unitPrice + "," + quantity + ","
+					+ quantityAmount + ")";
+			System.out.println(sql);
 
 			Integer m = st.executeUpdate(sql);
 			if (m >= 1) {
@@ -99,33 +96,30 @@ public class Main {
 			}
 			String sql1 = "Select * from Employee_Type";
 			ResultSet resultSet = st.executeQuery(sql1);
-		    
+
 			con.close();
-			} catch (Exception ex) {
-				System.err.println(ex);
-			}
-			 
-			}
-	  
-	 public void deletDataBase()
-		{
-		 String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=DatabseInvoice;" + "encrypt=true;"
-					+ "trustServerCertificate=true";
-			String user = "sa";
-			String pass = "root";
-			
-			
-			Connection con = null;
-			
-			try {
-				Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
-				DriverManager.registerDriver(driver);
-				con = DriverManager.getConnection(url, user, pass);
-				Statement st = con.createStatement();
+		} catch (Exception ex) {
+			System.err.println(ex);
+		}
+
+	}
+
+	public void deletDataBase() {
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=DatabseInvoice;" + "encrypt=true;"
+				+ "trustServerCertificate=true";
+		String user = "sa";
+		String pass = "root";
+
+		Connection con = null;
+
+		try {
+			Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			DriverManager.registerDriver(driver);
+			con = DriverManager.getConnection(url, user, pass);
+			Statement st = con.createStatement();
 			System.out.println("Enter the Item ID ");
-		    String sql = "DELETE FROM [dbo].[InvoiceItems]\r\n"
-		    		+ "      WHERE Item_Id= "+ sc.nextInt() ;
-		    System.out.println(sql);
+			String sql = "DELETE FROM [dbo].[InvoiceItems]\r\n" + "      WHERE Item_Id= " + sc.nextInt();
+			System.out.println(sql);
 
 			Integer m = st.executeUpdate(sql);
 			if (m >= 1) {
@@ -133,15 +127,354 @@ public class Main {
 			} else {
 				System.out.println("insertion failed");
 			}
-			
-		    
+
 			con.close();
-			} catch (Exception ex) {
-				System.err.println(ex);
-			}
-		
+		} catch (Exception ex) {
+			System.err.println(ex);
 		}
-	 
-	 
-	
+
+	}
+
+	public void printCustomerName() {
+		for (customer fCustomer : customerList) {
+			System.out.println("The Cutomer First Name: " + fCustomer.getCustomerFirstName());
+			System.out.println("The Cutomer Second Name: " + fCustomer.getCustomerSecondName());
+			System.out.println("The Cutomer  ID: " + fCustomer.getCustomerId());
+			System.out.println("The Cutomer Phone Number: " + fCustomer.getCustomerPhoneNumber());
+		}
+	}
+
+	public void print() {
+		for (item fItem : itemList) {
+			System.out.println("The Item Price:    " + fItem.getUnitPrice() + "      ");
+			System.out.println("the item ID:   " + fItem.getItemID() + "      ");
+			System.out.println("the item Amount:       " + fItem.getQtyAmount() + "      ");
+		}
+	}
+
+	public void updateDataBsePrice() {
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=invoice;" + "encrypt=true;"
+				+ "trustServerCertificate=true";
+		String user = "sa";
+		String pass = "root";
+
+		Connection con = null;
+
+		try {
+			Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			DriverManager.registerDriver(driver);
+			con = DriverManager.getConnection(url, user, pass);
+			Statement st = con.createStatement();
+			System.out.println("Enter the Item ID: ");
+			int Item_id = sc.nextInt();
+			System.out.println("Enter the New Price: ");
+			double newPrice = sc.nextDouble();
+			String sql = "UPDATE [dbo].[InvoiceItems]\r\n" + "   SET[UnitPrice] = " + newPrice + " WHERE Item_Id = "
+					+ Item_id;
+			System.out.println(sql);
+
+			Integer m = st.executeUpdate(sql);
+			if (m >= 1) {
+				System.out.println("inserted successfully : " + sql);
+			} else {
+				System.out.println("insertion failed");
+			}
+
+			con.close();
+		} catch (Exception ex) {
+			System.err.println(ex);
+		}
+	}
+
+	//////////////////// Customer/////////////////////////
+
+	public void updateDataBseCustomerPhone() {
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=invoice;" + "encrypt=true;"
+				+ "trustServerCertificate=true";
+		String user = "sa";
+		String pass = "root";
+
+		Connection con = null;
+
+		try {
+			Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			DriverManager.registerDriver(driver);
+			con = DriverManager.getConnection(url, user, pass);
+			Statement st = con.createStatement();
+			System.out.println("Enter the Customer ID: ");
+			int itemId = sc.nextInt();
+			System.out.println("Enter the Customer New Phone Number: ");
+			int CutmoerNumber = sc.nextInt();
+			String sql = "UPDATE [dbo].[Customers]\r\n" + "   SET[Customer_Phone_Number] = " + CutmoerNumber
+					+ " WHERE Customer_Id = " + itemId;
+			System.out.println(sql);
+
+			Integer m = st.executeUpdate(sql);
+			if (m >= 1) {
+				System.out.println("inserted successfully : " + sql);
+			} else {
+				System.out.println("insertion failed");
+			}
+
+			con.close();
+		} catch (Exception ex) {
+			System.err.println(ex);
+		}
+	}
+
+	public void deletDataBaseCustomer() {
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=invoice;" + "encrypt=true;"
+				+ "trustServerCertificate=true";
+		String user = "sa";
+		String pass = "root";
+
+		Connection con = null;
+
+		try {
+			Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			DriverManager.registerDriver(driver);
+			con = DriverManager.getConnection(url, user, pass);
+			Statement st = con.createStatement();
+			System.out.println("Enter the Customer ID that you wish to delete: ");
+			String sql = "DELETE FROM [dbo].[Customers]\r\n" + "      WHERE customer_ID = " + sc.nextInt();
+			System.out.println(sql);
+
+			Integer m = st.executeUpdate(sql);
+			if (m >= 1) {
+				System.out.println("inserted successfully : " + sql);
+			} else {
+				System.out.println("insertion failed");
+			}
+
+			con.close();
+		} catch (Exception ex) {
+			System.err.println(ex);
+		}
+
+	}
+
+	public void newCustomer() {
+		customer customer = new customer();
+		System.out.println("Enter the Cstomer First name: ");
+		String customerFirstName = sc.next();
+		customer.setCustomerFirstName(customerFirstName);
+
+		System.out.println("Enter the Cstomer Second name: ");
+		String customerSecondName = sc.next();
+		customer.setCustomerSecondName(customerSecondName);
+
+		System.out.println("Enter the Custoemr Phone Number: ");
+		int customerPhoneNumber = sc.nextInt();
+		customer.setCustomerPhoneNumber(customerPhoneNumber);
+		customerList.add(customer);
+
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=invoice;" + "encrypt=true;"
+				+ "trustServerCertificate=true";
+		String user = "sa";
+		String pass = "root";
+
+		Connection con = null;
+
+		try {
+			Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			DriverManager.registerDriver(driver);
+			con = DriverManager.getConnection(url, user, pass);
+			Statement st = con.createStatement();
+
+			String sql = "INSERT INTO Customers (Customer_Full_Name,Customer_Phone_Number)"
+
+					+ "VALUES ('" + customerFirstName + "','" + customerSecondName + "','" + customerPhoneNumber + "')";
+			System.out.println(sql);
+
+			Integer m = st.executeUpdate(sql);
+			if (m >= 1) {
+				System.out.println("inserted successfully : " + sql);
+			} else {
+				System.out.println("insertion failed");
+			}
+			con.close();
+		} catch (Exception ex) {
+			System.err.println(ex);
+		}
+
+	}
+
+////////////////////////////////////////////////////////////////////////////////INVOICE////////////////////////////////////////////////////////////////////////////////////////////
+	public void addInvoice() {
+		System.out.println("Enter the Invoice ID: ");
+		int invoiceId = sc.nextInt();
+		System.out.println("Enter the Customer ID: ");
+		int customerId = sc.nextInt();
+		System.out.println("enter the Invoice Date: ");
+		String invoiceDate = sc.next();
+		System.out.println("Enter the Number of Items: ");
+		int itemsNumber = sc.nextInt();
+		System.out.println("Enter the total Amount: ");
+		double totalAmount = sc.nextDouble();
+		System.out.println("Enter the Paid Amount: ");
+		double paidAmount = sc.nextDouble();
+		System.out.println("Enter the Total Balance: ");
+		double totalbalance = sc.nextDouble();
+
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=invoice;" + "encrypt=true;"
+				+ "trustServerCertificate=true";
+		String user = "sa";
+		String pass = "root";
+
+		Connection con = null;
+
+		try {
+			Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			DriverManager.registerDriver(driver);
+			con = DriverManager.getConnection(url, user, pass);
+			Statement st = con.createStatement();
+
+			String sql = "INSERT INTO Invoices (Invoice_Id,Customer_Id,Invoice_Date,Number_Of_Items,total_Amount,paid_Amount,totkal_Balance)"
+
+					+ "VALUES (" + invoiceId + "," + customerId + ",'" + invoiceDate + "'," + itemsNumber + ","
+					+ totalAmount + "," + paidAmount + "," + totalbalance + ")";
+			System.out.println(sql);
+
+			Integer m = st.executeUpdate(sql);
+			if (m >= 1) {
+				System.out.println("inserted successfully : " + sql);
+			} else {
+				System.out.println("insertion failed");
+			}
+			con.close();
+		} catch (Exception ex) {
+			System.err.println(ex);
+		}
+
+	}
+
+	public void invoiceheardr() {
+		invoice FirstInvoice = new invoice();
+
+		System.out.println("Enter the invoice ID: ");
+		int InvoiceId = sc.nextInt();
+		FirstInvoice.setInvoiceNumber(InvoiceId);
+		
+		System.out.println("Enter the invoice Fax: ");
+		int invoiceFax = sc.nextInt();
+		FirstInvoice.setInvoiceFax(invoiceFax);
+
+		System.out.println(" Enter the invoice phone: ");
+		int invoicePhone = sc.nextInt();
+
+		System.out.println("Enter the invoice Email: ");
+		String invoiceEmail = sc.next();
+
+		System.out.println("Enter the date in the format '__'/1/2023");
+		int invoiceDate = sc.nextInt();
+
+		invoiceList.add(FirstInvoice);
+
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=invoice;" + "encrypt=true;"
+				+ "trustServerCertificate=true";
+		String user = "sa";
+		String pass = "root";
+
+		Connection con = null;
+
+		try {
+			Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			DriverManager.registerDriver(driver);
+			con = DriverManager.getConnection(url, user, pass);
+			Statement st = con.createStatement();
+
+			String sql = "INSERT INTO Invoice_header (Invoice_header_ID,Invoice_Id,Invoice_Fax,Invoice_phone,Invoice_Email,Invoice_Data)"
+
+					+ "VALUES (" + InvoiceId + "," + invoiceFax + "," + invoicePhone + ",'"
+					+ invoiceEmail + "','" + invoiceDate + "');";
+			System.out.println(sql);
+
+			Integer m = st.executeUpdate(sql);
+			if (m >= 1) {
+				System.out.println("inserted successfully : " + sql);
+			} else {
+				System.out.println("insertion failed");
+			}
+			con.close();
+		} catch (Exception ex) {
+			System.err.println(ex);
+		}
+
+	}
+
+	public void printInvoicingHeader() {
+		for (invoice fInvoice : invoiceList) {
+			System.out.println("Fax is : " + fInvoice);
+			System.out.println("tel number is : " + fInvoice.getInvoiceNumber());
+			System.out.println("Fax is : " + fInvoice.getEmail());
+
+		}
+
+	}
+
+	public void printcustomer() {
+		for (Customer a : customerList) {
+			System.out.println("customer full name is : " + a.getCustomerFullName());
+			System.out.println("customer phone is     : " + a.getCustomerPhoneNumber());
+
+		}
+	}
+
+	public static void findInvoice()
+
+			throws IOException, InterruptedException {
+		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=invoice;" + "encrypt=true;"
+				+ "trustServerCertificate=true";
+		String user = "sa";
+		String pass = "root";
+		Scanner sr = new Scanner(System.in);
+		Connection con = null;
+		try {
+			Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			DriverManager.registerDriver(driver);
+			con = DriverManager.getConnection(url, user, pass);
+			System.out.println("Please Enter the Invoice ID:");
+			int invoiceID = sr.nextInt();
+			String sql = "SELECT * FROM Invoices WHERE Invoice_Id=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, invoiceID);
+			ResultSet rs = ps.executeQuery();
+			if (!rs.next()) {
+				System.out.println("Invoice Not Found");
+			} else {
+				System.out.println("Invoice Details:");
+				System.out.println(
+						"--------------------------------------------------------------------------------------------------------------------------------");
+				System.out.println(
+						"Invoice ID\tCustomer ID\tInvoice Date\tNumber of Items\tTotal Amount\tPaid Amount\ttotal Balance");
+				System.out.println(
+						"--------------------------------------------------------------------------------------------------------------------------------");
+// Print the details of the invoice
+				do {
+					int invoiceId = rs.getInt("Invoice_Id");
+					int customerId = rs.getInt("Customer_Id");
+					String invoiceDate = rs.getString("Invoice_Date");
+					int itemsNumber = rs.getInt("Number_Of_Items");
+					double total_Amount = rs.getInt("total_Amount");
+					double paidAmount = rs.getFloat("paid_Amount");
+					double totkal_Balance = rs.getFloat("totkal_Balance");
+					System.out.println(invoiceId + "\t\t" + customerId + "\t\t" + invoiceDate + "\t\t" + itemsNumber
+							+ "\t\t" + total_Amount + "\t\t" + paidAmount + "\t\t" + totkal_Balance);
+					System.out.println(
+							"--------------------------------------------------------------------------------------------------------------------------------");
+				} while (rs.next());
+			}
+		} catch (Exception ex) {
+			System.err.println(ex);
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					System.err.println(e);
+				}
+			}
+		}
+	}
+
 }
