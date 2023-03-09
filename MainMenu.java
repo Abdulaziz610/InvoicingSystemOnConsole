@@ -6,7 +6,30 @@ public class MainMenu {
 	
 		Scanner sc = new Scanner(System.in);
 		System.out.println("\t\t\t\t\t========================== Welcome ==========================");
+		mainFunctions functions = new mainFunctions();
 		
+		 String user = "sa";
+		 String pass = "root";
+		 boolean passwordC = true ;
+		 while (passwordC)
+		 {
+		 System.out.println("Enter Username");
+		 String username = sc.next();
+		 System.out.println("Enter Password");
+		 String password = sc.next();
+
+		 if (username.equals(user) && password.equals(pass))
+		 {
+			 passwordC = false ;
+		 }
+		 else if (username != (user) && password != (pass)) 
+		 {
+		 System.out.println("worng Username and Password ");
+		 
+		 }
+
+	 }
+	
 		boolean choice = true;
 		while(choice) {
 		System.out.println("1-Shop Settings");
@@ -35,22 +58,22 @@ public class MainMenu {
 		        int userOp = sc.nextInt();
 		        System.out.println("------------------------------------------------------------");
 		    	 if(userOp == 1) {
-
+/////>>> MEthods
 		    		 
 		    	  }
 	    	  if(userOp == 2) {
 	    			System.out.print("Enter shop Name: ");
-	    			
+	    			////////////////
 	    			choice1 = true;
 	    	  }
 	    	  else
 	    	  if(userOp == 3) {
-	    	
+	    	///////////
 	    			choice1 = true;
 	    	  }
 	    	  else
 	    	  if(userOp == 4) {
-	    		  
+	    		  //////////////////
 	    		  choice1 = false;
 	    			
 	    	  }
@@ -73,26 +96,27 @@ public class MainMenu {
 		      
 	    	  if(userOp == 1) {
 	    		  System.out.println(" Item Details: ");
+	    		  ///////////////////////
 				  choice2 = true;
 	    	
 	    	  }
 	    	  
 	    	  if(userOp == 2) {
 					System.out.print("Enter ID of the item to bo deleted: ");
-					
+				///////////////////////////////	
 					
 	    		  choice2 = true;
 	    	  }
 	    	  if(userOp == 3) {
 	    		  System.out.print("Enter ID of the item to change its price: ");
-	    		
+	    		//////////////////////
 	    		  System.out.println("Enter the New Price of the item: ");
-	    		 
+	    		 ////////////////////////
 	    		 choice2 = true;
 	    	  }
 		      
 		      if(userOp == 4) {
-		    	  
+		    	  ////////////////////
 	    		  System.out.println("==================== Report Item ====================");
 	    		  
 	    		 choice2 = true;
@@ -106,28 +130,31 @@ public class MainMenu {
 	      case 3:
 	    	  
 	    	  System.out.println("======= New Invoice =======");
-	    	  
+	    	  //////////////////////////
 	    	  choice = true;
 
 	        break;
 	      case 4:
 	    	  
 	    	  System.out.println("======= Statistics =======");
-	    	  
-	    	  
+	    	  ////////////////////////////
 		        break;
 	      case 5:
 	    	  System.out.println("======= All Invoices =======");
+	    	  //////////////////////
 		        break;
 	      case 6:
 	    	  System.out.println("======= Search (1) Invoice =======");
 	    	  System.out.println("Enter an item to be searched: ");
+	    	  //////////////////////
 	    	  break;
 	      case 7:
 	    	  System.out.println("======= Program Statistics =======");
+	    	  ///////////////////////////
 		        break;
 	      case 8:
 	    	  System.out.print("======= Are you sure you want to exit? press Y: ");
+	    	  //////////////////////////////
 	    	  String userInput = sc.next();
 	    	  if(userInput.equalsIgnoreCase("y")) {
 	    		  System.out.println("Thank You");
