@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -20,28 +21,34 @@ public class Main {
 
 	// ************================ Shop ================************//
 	public void addShop() {
-		boolean condition0 = true;
+		boolean choice0 = false;
+		do {
+			choice0 = false;
+			try // for handing the exception
+			{
+				shop firstShop = new shop();
+				System.out.println("Enter Shop Name:  ");
+				String shopName = sc.next();
+				firstShop.setshopName(shopName);
+				System.out.println("Enter Shop ID: ");
+				int shopID = sc.nextInt();
+				firstShop.setshopID(shopID);
 
-		while (condition0) {
-			shop firstShop = new shop();
-			System.out.println(" Enter the shop name: ");
-			String shopName = sc.next();
-			firstShop.setshopName(shopName);
+				shopList.add(firstShop);
+			} catch (InputMismatchException w) { // for handing the try and showing the given pritn insted of showing an
+													// error excpation
+				System.out.println("ID should be integer, Name should be String!");
+		
+				choice0 = true;
+				sc.nextLine(); // with out the sc.nextLine() there will be an infinty loop going
+			}
+		} while (choice0); // we have to do (do - while) to make the condation happen
 
-			System.out.println(" Enter the shop ID: ");
-			int shopID = sc.nextInt();
-			firstShop.setshopID(shopID);
-
-			shopList.add(firstShop);
-
-		}
-		condition0 = false;
 	}
 
 	public void printShopDetails() {
 		for (shop fShop : shopList) {
-			System.out.println(" Shop Name is: " + fShop.getshopName() + "   ");
-			System.out.println(" Shop Name is: " + fShop.getshopID() + "   ");
+			System.out.println("Shop Name is: " + fShop.getshopName() + "        ");
 		}
 
 	}
@@ -347,7 +354,7 @@ public class Main {
 
 	}
 
-	public void invoiceheardr() {
+	public void invoiceheader() {
 		invoice FirstInvoice = new invoice();
 
 		System.out.println("Enter the invoice ID: ");
@@ -370,9 +377,6 @@ public class Main {
 		String invoiceWebsite = sc.next();
 		FirstInvoice.setInvEmail(invoiceWebsite);
 
-		System.out.println("Enter the date in the format '__'/1/2023");
-		int invoiceDate = sc.nextInt();
-		FirstInvoice.setInvoiceDate(null);
 
 		invoiceList.add(FirstInvoice);
 
@@ -392,7 +396,7 @@ public class Main {
 			String sql = "INSERT INTO Invoice_header (Invoice_header_ID,Invoice_Id,Invoice_Fax,Invoice_phone,Invoice_Email,Invoice_Data)"
 
 					+ "VALUES (" + InvoiceId + "," + invoiceFax + "," + invoicePhone + ",'"
-					+ invoiceEmail + "','" + invoiceDate + "');";
+					+ invoiceEmail + "');";
 			System.out.println(sql);
 
 			Integer m = st.executeUpdate(sql);

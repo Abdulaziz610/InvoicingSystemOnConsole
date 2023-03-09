@@ -6,16 +6,16 @@ public class MainMenu {
 	
 		Scanner sc = new Scanner(System.in);
 		System.out.println("\t\t\t\t\t========================== Welcome ==========================");
-		mainFunctions functions = new mainFunctions();
+		Main mainMethod = new Main();
 		
 		 String user = "sa";
 		 String pass = "root";
 		 boolean passwordC = true ;
 		 while (passwordC)
 		 {
-		 System.out.println("Enter Username");
+		 System.out.print("Enter Username: ");
 		 String username = sc.next();
-		 System.out.println("Enter Password");
+		 System.out.print("Enter Password: ");
 		 String password = sc.next();
 
 		 if (username.equals(user) && password.equals(pass))
@@ -24,7 +24,7 @@ public class MainMenu {
 		 }
 		 else if (username != (user) && password != (pass)) 
 		 {
-		 System.out.println("worng Username and Password ");
+		 System.out.println("Worng Username and Password ");
 		 
 		 }
 
@@ -58,17 +58,17 @@ public class MainMenu {
 		        int userOp = sc.nextInt();
 		        System.out.println("------------------------------------------------------------");
 		    	 if(userOp == 1) {
-/////>>> MEthods
+		    		 mainMethod.loadDataFormInvoiceItems();
+		    		 mainMethod.loadDAataFromInvoice();
 		    		 
 		    	  }
 	    	  if(userOp == 2) {
-	    			System.out.print("Enter shop Name: ");
-	    			////////////////
-	    			choice1 = true;
+	    		  mainMethod.addShop();
+	    		  choice1 = true;
 	    	  }
 	    	  else
 	    	  if(userOp == 3) {
-	    	///////////
+	    		  mainMethod.invoiceheader();
 	    			choice1 = true;
 	    	  }
 	    	  else
