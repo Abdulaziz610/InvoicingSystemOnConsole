@@ -123,7 +123,7 @@ public class MainMenu {
 	   }
 	        break;
 	      case 3:
-	    	  
+	    	  mainMethod.newCustomer();
 	    	  System.out.println("======= New Invoice =======");
 	    	  mainMethod.addInvoice();
 	    	  choice = true;

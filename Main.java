@@ -261,13 +261,19 @@ public class Main {
 
 	public void newCustomer() {
 		customer customer = new customer();
-		System.out.println("Enter the Cstomer First name: ");
+		
+		System.out.println("Enter the CstomerID: ");
+		int customerID = sc.nextInt();
+		customer.setCustomerId(customerID);
+		
+		
+		System.out.println("Enter the Cstomer Full name: ");
 		String customerFirstName = sc.next();
 		customer.setCustomerFirstName(customerFirstName);
 
-		System.out.println("Enter the Cstomer Second name: ");
-		String customerSecondName = sc.next();
-		customer.setCustomerSecondName(customerSecondName);
+	//	System.out.println("Enter the Cstomer Second name: ");
+	//	String customerSecondName = sc.next();
+	//	customer.setCustomerSecondName(customerSecondName);
 
 		System.out.println("Enter the Custoemr Phone Number: ");
 		int customerPhoneNumber = sc.nextInt();
@@ -287,9 +293,9 @@ public class Main {
 			con = DriverManager.getConnection(url, user, pass);
 			Statement st = con.createStatement();
 
-			String sql = "INSERT INTO Customers (Customer_Full_Name,Customer_Phone_Number)"
+			String sql = "INSERT INTO Customers (customer_id,full_name,phone_number)"
 
-					+ "VALUES ('" + customerFirstName + "','" + customerSecondName + "','" + customerPhoneNumber + "')";
+					+ "VALUES ('" + customerID + "','" + customerFirstName + "','" + customerPhoneNumber + "')";
 			System.out.println(sql);
 
 			Integer m = st.executeUpdate(sql);
@@ -335,9 +341,9 @@ public class Main {
 			con = DriverManager.getConnection(url, user, pass);
 			Statement st = con.createStatement();
 
-			String sql = "INSERT INTO Invoices (Invoice_Id,Customer_Id,Invoice_Date,Number_Of_Items,total_Amount,paid_Amount,totkal_Balance)"
+			String sql = "INSERT INTO Invoices (invoice_id,customer_id,total_Amount,paid_Amount,balance)"
 
-					+ "VALUES (" + invoiceId + "," + customerId + ",'" + invoiceDate + "'," + itemsNumber + ","
+					+ "VALUES (" + invoiceId + "," + customerId + ","
 					+ totalAmount + "," + paidAmount + "," + totalbalance + ")";
 			System.out.println(sql);
 
